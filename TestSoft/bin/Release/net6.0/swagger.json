@@ -1,0 +1,305 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "TestApi",
+    "version": "v1"
+  },
+  "paths": {
+    "/Authentication/Validar": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Polizas": {
+      "get": {
+        "tags": [
+          "Polizas"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Polizas"
+        ],
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/AgregarDatosRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/Polizas/Clientes": {
+      "get": {
+        "tags": [
+          "Polizas"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Clientes"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Polizas/All": {
+      "get": {
+        "tags": [
+          "Polizas"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Polizas"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/Polizas/{parametro}": {
+      "get": {
+        "tags": [
+          "Polizas"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "parametro",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "AgregarDatosRequest": {
+      "type": "object",
+      "properties": {
+        "creacionPoliza": {
+          "$ref": "#/definitions/CreacionPoliza"
+        }
+      }
+    },
+    "Clientes": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "nombre": {
+          "type": "string"
+        },
+        "apellido": {
+          "type": "string"
+        },
+        "identificacion": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "fechaNacimiento": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "direccion": {
+          "type": "string"
+        },
+        "ciudad": {
+          "type": "string"
+        }
+      }
+    },
+    "Coberturas": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "nombre": {
+          "type": "string"
+        },
+        "descripcion": {
+          "type": "string"
+        },
+        "valorMaximo": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "CreacionPoliza": {
+      "type": "object",
+      "properties": {
+        "clienteData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Clientes"
+          }
+        },
+        "clienteId": {
+          "type": "string"
+        },
+        "coberturaId": {
+          "type": "string"
+        },
+        "fechaTomaPoliza": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "vlrMax": {
+          "format": "float",
+          "type": "number"
+        },
+        "nombrePlan": {
+          "type": "string"
+        },
+        "placaAutomotor": {
+          "type": "string"
+        },
+        "modelo": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "inspeccionVehi": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Polizas": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "clienteId": {
+          "type": "string"
+        },
+        "coberturaId": {
+          "type": "string"
+        },
+        "fechaTomaPoliza": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "vlrMax": {
+          "format": "float",
+          "type": "number"
+        },
+        "nombrePlan": {
+          "type": "string"
+        },
+        "placaAutomotor": {
+          "type": "string"
+        },
+        "modelo": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "inspeccionVehi": {
+          "type": "boolean"
+        },
+        "fechaVigencia": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "clienteData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Clientes"
+          }
+        },
+        "coberturaData": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Coberturas"
+          }
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
+}
